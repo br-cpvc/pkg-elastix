@@ -38,7 +38,7 @@ cd $deb_root
 find . -type f ! -regex '.*?debian-binary.*' ! -regex '.*?DEBIAN.*' -printf '%P ' | xargs md5sum > DEBIAN/md5sums
 cd $cwd
 
-package="elastix"
+package="pkg-elastix"
 maintainer="SuperElastix/elastix <https://github.com/SuperElastix/elastix/issues>"
 arch="amd64"
 
@@ -84,6 +84,7 @@ Priority: extra
 Maintainer: $maintainer
 Version: $packageversion
 Package: $package
+Conflicts: elastix
 Architecture: $arch
 Installed-Size: $installedsize
 Description: $description
