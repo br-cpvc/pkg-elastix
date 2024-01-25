@@ -30,6 +30,7 @@ if [[ ! -f $elastix_pkg ]]; then
 fi
 md5sum -c $elastix_pkg.md5sum
 unzip $elastix_pkg -d ${deb_root}/usr/
+chmod +x ${deb_root}/usr/bin/*
 
 rm -f ${deb_root}/usr/LICENSE ${deb_root}/usr/NOTICE
 
