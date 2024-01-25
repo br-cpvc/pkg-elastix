@@ -11,15 +11,25 @@ rm -rf ${deb_root}
 mkdir -p ${deb_root}/DEBIAN
 mkdir -p ${deb_root}/usr
 
-version="4.8"
-elastix_pkg=elastix_linux64_v${version}.tar.bz2
-url=https://elastix.lumc.nl/download/$elastix_pkg
-echo "9a0b346b0087c613ebe34e17603364d6  $elastix_pkg" > $elastix_pkg.md5sum
+#version="4.8"
+#elastix_pkg=elastix_linux64_v${version}.tar.bz2
+#url=https://elastix.lumc.nl/download/$elastix_pkg
+#echo "9a0b346b0087c613ebe34e17603364d6  $elastix_pkg" > $elastix_pkg.md5sum
+#if [[ ! -f $elastix_pkg ]]; then
+# curl --insecure $url -o $elastix_pkg
+#fi
+#md5sum -c $elastix_pkg.md5sum
+#tar xjf $elastix_pkg --directory ${deb_root}/usr/
+
+version="5.1.0"
+elastix_pkg=elastix-${version}-linux.zip
+url=https://github.com/SuperElastix/elastix/releases/download/${version}/$elastix_pkg
+echo "200b2c76ca40f526c0c711e6a2ed5082  $elastix_pkg" > $elastix_pkg.md5sum
 if [[ ! -f $elastix_pkg ]]; then
- curl --insecure $url -o $elastix_pkg
+ curl -L $url -o $elastix_pkg
 fi
 md5sum -c $elastix_pkg.md5sum
-tar xjf $elastix_pkg --directory ${deb_root}/usr/
+unzip $elastix_pkg -d ${deb_root}/usr/
 
 rm -f ${deb_root}/usr/LICENSE ${deb_root}/usr/NOTICE
 
