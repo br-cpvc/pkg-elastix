@@ -14,11 +14,13 @@ mkdir -p ${deb_root}/usr
 version="4.8"
 elastix_pkg=elastix_linux64_v${version}.tar.bz2
 url=https://elastix.lumc.nl/download/$elastix_pkg
+echo "9a0b346b0087c613ebe34e17603364d6  $elastix_pkg" > $elastix_pkg.md5sum
 if [[ ! -f $elastix_pkg ]]; then
  curl --insecure $url -o $elastix_pkg
 fi
 md5sum -c $elastix_pkg.md5sum
 tar xjf $elastix_pkg --directory ${deb_root}/usr/
+
 rm -f ${deb_root}/usr/LICENSE ${deb_root}/usr/NOTICE
 
 cwd=`pwd`
